@@ -1,0 +1,30 @@
+
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract project ZIP
+        run: |
+          unzip -o MobileStudio-Android-Project.zip -d source
+
+      - name: Find Gradle project
+        run: |
+          find source -name gradlew -type f
+
+      - name: Build instructions
+        run: |
+          echo "Check the Gradle project path in the logs."
+          echo "The build step must be configured for the actual project."
+          
